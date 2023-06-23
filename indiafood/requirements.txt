@@ -1,0 +1,4 @@
+Python=Python 3.11.3
+SQLite=sqlite3
+file=restaurants_small.csv
+Model name=Food,Details,Rating,Location
