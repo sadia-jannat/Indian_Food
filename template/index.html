@@ -1,0 +1,208 @@
+<html>
+  <head>
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Fontawesome link for text-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+<!-- Fontawesome Links icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    
+<!--Fontawesome link for text-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@500&display=swap" rel="stylesheet">
+
+<!--Autocomplete link-->
+<link rel="stylesheet" href="https://unpkg.com/@trevoreyre/autocomplete-js/dist/style.css"/>
+
+
+<!-- jQuery for auto search last -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- jQuery UI for auto search last-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+ <title>House </title>
+<!--latest--> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">        
+ <!--end-->
+
+
+</head>
+<body >
+
+<!--1.search-->
+<div class="container">  
+    <div class="row mb-5">  
+      <div class="col-8 mx-auto">  
+        <h3 class="font-weight-light mb-4 font-italic text-black-50" style="text-align: center;">Dishes Search</h3>  
+        <div class="bg-white p-5 m-5 rounded shadow rounded rounded-pill">  
+         
+            
+              <div class="input-group ">  
+  
+              
+                <form action="" method="get" class="d-flex">
+                  <input class="form-control rounded rounded-pill m-4 border-dark border-5 bg-transparent " type="text" name="query" placeholder="Search by Dishes" aria-label="Search " >
+                  
+                  <div class="input-group-append"> 
+                  <button class="btn btn-secondary rounded rounded-pill m-4 border-5 bg-dark"><i class="fa fa-search fa-1x"> </i></button>
+                  </div>
+  
+              </form>  
+              
+              </div>  
+
+        </div>  
+      </div>  
+    </div>     
+  </div>  
+  <!--end search-->
+  
+<!-- 2.Food Details-->
+<div class="container">
+  <p class="font-italic"  style="text-align: center;"><b>Your Preferable Dishes</b></p>
+  <div class="row"> 
+  <div class="col">  
+    
+    <div class="card mt-5">
+  
+      {% if food %}
+  
+      {% for f in food %}
+   
+  <div class="card-body ">
+      <div class="category-image" >
+      <img src="" alt="Category image" class="image-responsive rounded" width="100%" > 
+      </div>
+      
+      <h2 class="card-title text-center border">Dish Id:  {{f.primaryid}} </h2>
+      <h2 class="card-title text-center border">Dish Name:  {{f.name}} </h2>
+      <h2 class="card-title text-center border">Address:  {{f.location}} </h2>
+      <h2 class="card-title text-center border">Items:  {{f.items}} </h2>
+      <h2 class="card-title text-center border">Latitudes_Longitudes:  {{f.lat_long}} </h2>
+      
+      <h3 class="card-text text-center border">Full Details: {{f.full_details}} </h3>
+           
+     <!-- <div class="d-flex justify-content-center links">
+      <a href="{% url 'Recommandation' f.pk%}" class="btn btn-primary ml-2">Food Recommandation</a> 
+      </div> -->
+
+  </div>
+   
+  {% endfor %}
+  
+  {%else%}
+  <p>No search record found</p> 
+  {% endif %}  
+
+</div>
+
+  </div>
+  </div>
+  </div>
+<!--end-->  
+<!---mainfood.location == f.pk.loction-->
+<!--3.recommandation-->
+<div class="container">
+  <p class="font-italic"  style="text-align: center;"><b>Your Recommandation Dishes</b></p>
+    <div class="row"> 
+    <div class="col">  
+     
+  <div class="card mt-5">
+    {% if food %}
+    
+    {% for f in food %}
+
+    {% if mainfood%}
+    
+    {% if mainfood.location == f.pk.location %}
+    
+    <div class="card-body ">
+      <h2 class="card-title text-center border">Dish Id:  {{mainfood.primaryid}} </h2>
+      <h2 class="card-title text-center border">Dish Name:  {{mainfood.name}} </h2>
+      <h2 class="card-title text-center border">Address:  {{mainfood.location}} </h2>
+      <h2 class="card-title text-center border">Items:  {{mainfood.items}} </h2>
+      <h2 class="card-title text-center border">Latitudes_Longitudes:  {{mainfood.lat_long}} </h2>
+      
+      <h3 class="card-text text-center border">Full Details: {{mainfood.full_details}} </h3>
+  
+    </div>
+  
+    {%endif%}
+
+    {%endif%}
+  
+    {% endfor %}
+    
+    {%else%}
+    <p>No search record found</p> 
+    {% endif %}  
+  </div>
+
+    </div>
+    </div>
+    </div>
+  <!--end-->   
+
+<!--4.table details
+<section>
+  <h4 class="font-italic" style="text-align: center;">Dishes Table</h4>
+  <p>{{today}}</p>
+  <div class="content">
+  {% if food %}
+  
+  <table class="table table-bordered table-striped ">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Dish Id</th>
+          <th scope="col">Dish Name</th>
+          <th scope="col">Address</th>
+          <th scope="col">Items</th>
+          <th scope="col">Latitudes_Longitudes</th>
+          <th scope="col">Full Details</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+  
+          {% for f in food%}
+  
+        <tr>
+          <th scope="row">{{f.primaryid}}</th>
+          <td>{{f.name}}</td>
+          <td>{{f.location}}</td>
+          <td>{{f.items}}</td>
+          <td>{{f.lat_long}}</td>
+          <td>{{f.full_details}}</td>
+          
+  </tr>
+       
+  {%endfor%}
+  
+  </tbody>
+  </table>
+  
+  {%endif%}
+ 
+  </div>
+  </section>
+  
+end -->
+
+  
+
+<!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+     <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+</html>         
